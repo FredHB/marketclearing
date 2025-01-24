@@ -26,7 +26,7 @@ hide:
         </div>
         <div class="about-info">
           <p>I’m a PhD candidate in Finance at the University of Zurich and the Swiss Finance Institute. I hold a MSc in Economics from the Barcelona School of Economics. <br> <br>
-          My research interests are macroeconomics, firm dynamics, and corporate finance. In my research, I study how information, financing, and household heterogeneity matter for firm dynamics, and how firm dynamics, in turn, impact short-run and long-run output and welfare.</p>
+          My research interests are firm dynamics and corporate finance. In my research, I study how information and financing matter for firm dynamics, and how firm dynamics, in turn, impact short-run and long-run output and welfare.</p>
         </div>
       </div>
     </section>
@@ -34,79 +34,60 @@ hide:
 === "Working Papers"
     <span class="back-button">[:fontawesome-solid-house:](../about/index.md)</span>
     <section id="research" class="home-section wg-research">
-      <div class="about-grid">
-        <div class="research-title text-center">
-          <h3>Working Papers</h3>
-        </div>
-        <div class="research-info">
-          <ul>
-            <li><i class="fas fa-file-alt"></i>"Not-So-Cleansing Recessions", with Frederik Bennhoff and Alessandro Ferrari, 2024.<span class="ital"> Draft coming soon.</span>
-           <details><summary>Summary</summary>
-            <p>Recessions are periods in which the least productive firms in the economy exit, and as the economy recovers, they are replaced by new and more productive entrants. These *cleansing effects* imply that business cycles generate improvements in the average firm productivity. We argue that this is not sufficient to induce long-run gains in GDP and welfare. We show that these are driven by the intensity of *love-for-variety* in households' preferences. If the household has CES preferences, recessions do not bring about any improvement in GDP and welfare. If the economy features more *love-for-variety* than CES, the social planner finds it optimal to subsidize economic activity in recessions to avoid firm exit.</p>
-            </details>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <h1 class="work-title text-center">Working Papers</h1>
+      <div class="research-info">
+        <ul>
+        <li><i class="far fa-newspaper"></i>"Not-So-Cleansing Recessions," with Frederik Bennhoff and Alessandro Ferrari, 2024.<br><i> Draft coming soon.</i><a href="./Not_So_Cleansing_Recessions_Slides.pdf" class="blue-rectangle" target="_blank">Slides</a>
+        <details open><summary>Summary</summary>
+            <div class="summary-grid">
+                <div class="summary-img text-center">
+                    <img src="./AF_BHF_IB main pic.png" alt="Main Figure of Bajo et al. (2024)" class="img-responsive" style="width: 400px; height: auto;">
+                </div>
+                <div class="summary-info">
+                <p>Recessions are periods in which the least productive firms in the economy exit, and as the economy recovers, they are replaced by new and more productive entrants. These cleansing effects imply that business cycles generate improvements in the average firm productivity. We argue that this is not sufficient to induce long-run gains in GDP and welfare. We show that these are driven by the intensity of love-of-variety in aggregate production. If industry output is aggregated with the standard CES aggregator, recessions do not bring about any improvement in GDP and welfare. If the economy features more love-of-variety than CES, the social planner finds it optimal to subsidize economic activity in recessions to avoid firm exit.</p>
+                </div>
+            </div>
+        </details>
+        </li>
+        </ul>
+    </div>
     </section>
 
 === "Work in Progress"
     <span class="back-button">[:fontawesome-solid-house:](../about/index.md)</span>
     <section id="work-in-progress" class="home-section wg-work-in-progress">
-      <div class="about-grid">
-        <div class="work-title text-center">
-          <h3>Work in Progress</h3>
-        </div>
+    <h1 class="work-title text-center">Work in Progress</h1>
         <div class="work-info">
-          <ul>
-            <li><i class="fas fa-file-alt"></i>"Local stock markets, entrepreneurship, and innovation", with Charles Parry.</li>
-            <li><i class="fas fa-file-alt"></i>"Cleansing Dynamics in Economies with Heterogeneity", with Frederik Bennhoff.</li>
-            <li><i class="fas fa-file-alt"></i>"Information disclosure and firm entry", with Fulvia Oldrini.</li>
-            <li><i class="fas fa-file-alt"></i>"Wealth inequality, concentration, and markups", with Jason Blunier.</li>
-          </ul>
+            <ul>
+            <li><i class="fas fa-person-digging"></i>"Local stock markets," with Charles Parry.</li>
+            <li><i class="fas fa-person-digging"></i>"Information disclosure and firm entry," with Fulvia Oldrini.</li>
+            <li><i class="fas fa-person-digging"></i>"Wealth inequality, concentration, and markups," with Frederik Bennhoff and Jason Blunier.</li>
+            </ul>
         </div>
-      </div>
     </section>
 
 === "Teaching"
     <span class="back-button">[:fontawesome-solid-house:](../about/index.md)</span>
     <section id="teaching" class="home-section wg-teaching">
-      <div class="teaching-grid">
-        <div class="teaching-title text-center">
-          <h3>Teaching</h3>
-        </div>
-        <div>
-            <div class="teaching-sub-grid">
-                <div class="teaching-info">
-                  <ul class="li-head-list">
-                    <li id="li-head"><strong>Teaching Assistant</strong></li>
-                  </ul>
-                </div>
-                <div class="teaching-info">
-                  <ul>
-                    <li>Macroeconomics for Research Students Part I (PhD), University of Zurich, Graduate, Fall 2024</li>
-                    <li>Economic Foundations for Finance, University of Zurich, Graduate, Fall 2024</li>
-                    <li>Real Analysis I, University of Zurich, Graduate, Fall 2023 and 2024</li>
-                    <li>Theses Supervision, University of Zurich, Graduate and Undergraduate, 2023-present</li>
-                  </ul>
-                </div>
-            </div>
-            <div class="teaching-sub-grid">
-                <div class="teaching-info">
-                  <ul class="li-head-list">
-                    <li id="li-head"><strong>Instructor</strong></li>
-                  </ul>
-                </div>
-                <div class="teaching-info">
-                  <ul>
-                    <li>Python Programming, Powercoders Coding Academy, 2021-2022</li>
-                  </ul>
-                </div>
-            </div>
-        </div>
+    <h1 class="work-title text-center">Teaching</h1>
+      <h3><i style="font-weight:bold">University of Zurich</i></h3>
+      <div class="work-info">
+          <ul>
+          <li><i class="fas fa-chalkboard-user"></i>Teaching Assistant, Macroeconomics for Research Students Part I, PhD (Fall 2024)</li>
+          <li><i class="fas fa-chalkboard-user"></i>Teaching Assistant, Economic Foundations for Finance, Master's (Fall 2024)</li>
+          <li><i class="fas fa-chalkboard-user"></i>Teaching Assistant, Real Analysis I, Master's (Fall 2023)</li>
+          <li><i class="fas fa-chalkboard-user"></i>Theses Supervision, Master's and Bachelor's (2023-present)</li>
+          </ul>
+      </div>
+      <h3><i style="font-weight:bold">Powercoders Coding Academy, Zurich, Switzerland</i></h3>
+      <div class="work-info">
+          <ul>
+          <li><i class="fas fa-person-chalkboard"></i>Python Programming (2021-2022)</li>
+          </ul>
       </div>
     </section>
 
 
 <!-- Include Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">

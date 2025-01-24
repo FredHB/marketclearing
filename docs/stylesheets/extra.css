@@ -107,9 +107,6 @@ details[open] summary {
 }
 
 
-
-
-
 /* ABOUT */
 
 .all-about {
@@ -359,6 +356,35 @@ details[open] summary {
 .about-info .bio {
     margin-bottom: 1rem;
 }
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    gap: 0.1rem;
+    align-items: center;
+}
+
+.summary-info p {
+    font-size: 0.9rem !important;
+}
+
+.blue-rectangle {
+    display: inline-block; /* Adjust to inline, if needed */
+    background-color:#0056b3; /* Blue fill color */
+    color: white !important; /* Text color */
+    padding: 0.5rem 0.8rem; /* Padding around the text */
+    border-radius: 0.6rem; /* Optional: Rounded corners */
+    margin: 0.2rem;
+    font-size: 0.75rem; /* Adjust text size */
+    text-align: center; /* Center text alignment */
+    text-decoration: none !important;
+  }
+
+  .blue-rectangle:hover {
+    background-color: navy; /* Darker blue on hover */
+    text-decoration: none !important; /* Remove underline on hover */
+  }
+
 
 @media (max-width: 990px) {
 

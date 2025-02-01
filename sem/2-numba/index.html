@@ -846,8 +846,13 @@ A function to sum the entries of a matrix.</p>
 <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sum2d</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>500813.47465895314
+</code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">timeit</span> <span class="n">sum2d</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 <span class="o">%</span><span class="n">timeit</span> <span class="n">sum2d_slow</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>983 µs ± 65.8 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+94.4 ms ± 1.8 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </code></pre></div>
 <p><strong>Example 2:</strong> A function to calculate the nth entry of the Fibonacci sequence <span class="arithmatex"><span class="MathJax_Preview">x_n = x_{n-1} + x_{n-2}</span><script type="math/tex">x_n = x_{n-1} + x_{n-2}</script></span> with <span class="arithmatex"><span class="MathJax_Preview">x_{1}, x_2 = 1</span><script type="math/tex">x_{1}, x_2 = 1</script></span>.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -860,6 +865,8 @@ A function to sum the entries of a matrix.</p>
         <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>55
 </code></pre></div>
 <p><strong>Example 3:</strong> A custom function to perform matrix multiplication.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -876,6 +883,12 @@ A function to sum the entries of a matrix.</p>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[[2.98968204 1.98847909 1.61801679 2.50340159 2.25484186]
+ [1.29159912 1.11695596 1.09491006 1.49815718 0.92471361]
+ [2.29008386 1.92642715 1.1360947  1.94572225 1.61010675]
+ [1.00080451 0.60136262 0.6481075  0.89050315 0.79019492]
+ [1.61881542 1.28320473 0.95341038 1.50718031 1.11756129]]
 </code></pre></div>
 <p><strong>Exercise:</strong> Time the functions in all examples and compare the runtime to a non-JIT&rsquo;ed version.</p>
 <h2 id="2-parallelization">2. <strong>Parallelization</strong><a class="headerlink" href="#2-parallelization" title="Permanent link">#</a></h2>
@@ -903,8 +916,17 @@ A function to sum the entries of a matrix.</p>
 <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">parallel_matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span>
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>[[0.42546991 0.1540311  0.16394572 0.60225408 0.73378924]
+ [0.69485696 0.80875058 0.72270807 1.59882819 1.8065876 ]
+ [0.63858342 0.59801137 0.79892044 1.15579666 1.04488927]
+ [0.62294144 1.04404476 1.31799181 1.57375161 1.29141532]
+ [0.79744389 0.77428444 1.21240957 1.3350469  0.99760936]]
+</code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">timeit</span> <span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
 <span class="o">%</span><span class="n">timeit</span> <span class="n">parallel_matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>509 ns ± 5.12 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+94.9 µs ± 2.69 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
 </code></pre></div>
 <p><strong>Exercise:</strong> Parallel simulation of a brownian motion.
 The formula for a Geometric Brownian Motion (GBM) is given by:</p>
@@ -958,9 +980,12 @@ The formula for a Geometric Brownian Motion (GBM) is given by:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
+<p><img alt="png" src="../2-numba_files/2-numba_17_0.png" /></p>
 <p>Let&rsquo;s time the function:</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">timeit</span>
 <span class="n">GBM_sim</span><span class="p">(</span><span class="n">S0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="mf">0.08</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">deltaT</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>20 ms ± 387 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </code></pre></div>
 <p><strong>Exercise:</strong> Write a function <code>call_payout(price, strike)</code>, which gives you the value of a call option at maturity if the price of the underlying are given in <code>prices</code> and you have the right (but not the obligation) to buy the underlying for the strike price <code>strike</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">call_payout</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">strike</span><span class="p">):</span>
@@ -987,6 +1012,7 @@ The formula for a Geometric Brownian Motion (GBM) is given by:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
+<p><img alt="png" src="../2-numba_files/2-numba_24_0.png" /></p>
 
 
 

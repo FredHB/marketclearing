@@ -1014,7 +1014,7 @@ where <span class="arithmatex"><span class="MathJax_Preview">L</span><script typ
 <div class="highlight"><pre><span></span><code><span class="c1"># Plot the time series</span>
 <span class="n">plot_time_series</span><span class="p">(</span><span class="n">arma_ts</span><span class="p">,</span> <span class="n">arma_dict</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="3-application_stoch_proc_files/3-application_stoch_proc_7_0.png" /></p>
+<p><img alt="png" src="../3-application_stoch_proc_files/3-application_stoch_proc_7_0.png" /></p>
 <p>Recall now that a given <span class="arithmatex"><span class="MathJax_Preview">ARMA(p,q)</span><script type="math/tex">ARMA(p,q)</script></span> is stationary if and only if all roots of the characteristic polynomial on the AR-part, 
 $$ 1 - L^1 \alpha_1 - &hellip; - L^q \alpha_q $$
 are outside the (complex) unit circle. We write a function to check this. To do so, we use <code>np.roots(p)</code>, which return the roots of a polynomial with coefficients given in <code>p</code>.</p>
@@ -1212,7 +1212,7 @@ Buddy says woof!
 <span class="n">myarma</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 <span class="n">myarma</span><span class="o">.</span><span class="n">is_stable</span><span class="p">()</span>
 </code></pre></div>
-<p><img alt="png" src="3-application_stoch_proc_files/3-application_stoch_proc_17_0.png" /></p>
+<p><img alt="png" src="../3-application_stoch_proc_files/3-application_stoch_proc_17_0.png" /></p>
 <div class="highlight"><pre><span></span><code>[0.3 0.3]
 ----------------------------------------------------------------------
 The lag polynomial to check is:
@@ -1299,7 +1299,9 @@ False
 <span class="c1"># next period distribution</span>
 <span class="n">Pi</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">@</span> <span class="n">pi</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>array([0.15, 0.45, 0.4 ])
+<div class="highlight"><pre><span></span><code>array([[0.15],
+       [0.45],
+       [0.4 ]])
 </code></pre></div>
 <p><strong>Exercise:</strong> Write a function that checks whether a given matrix is a Markov matrix.</p>
 <ul>
@@ -1320,14 +1322,13 @@ False
        [0.35042735, 0.34188034, 0.30769231]])
 </code></pre></div>
 <h2 id="rouwenhorst-method-to-approximate-an-ar1-process-with-a-markov-chain">Rouwenhorst Method to Approximate an AR(1) Process with a Markov Chain<a class="headerlink" href="#rouwenhorst-method-to-approximate-an-ar1-process-with-a-markov-chain" title="Permanent link">#</a></h2>
-<p>We discuss how to approximate an AR(1) process with a finite state-space markov chain. This section is inspired by material in <a href="https://github.com/shade-econ/nber-workshop-2023/blob/bc3bbba90ab575f09c4c8a9e77b0b2fe88812cd1/Lectures/Lecture%201%2C%20Standard%20Incomplete%20Markets%20Steady%20State.ipynb">this repository</a> by Matt Rognlie.</p>
 <h3 id="advantages-of-the-rouwenhorst-method">Advantages of the Rouwenhorst Method:<a class="headerlink" href="#advantages-of-the-rouwenhorst-method" title="Permanent link">#</a></h3>
 <ul>
-<li><strong>Flexibility:</strong> The Rouwenhorst method is particularly useful for approximating AR(1) processes with high persistence (i.e., when <span class="arithmatex"><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> is close to 1) because it can accommodate the high persistence and the correct distribution properties of the AR(1) process.</li>
-<li><strong>Accuracy:</strong> It provides a good approximation with relatively few states (even with a small <span class="arithmatex"><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>), making it computationally efficient.</li>
+<li><strong>Flexibility:</strong> The Rouwenhorst method is particularly useful for approximating AR(1) processes with high persistence (i.e., when $ \rho $ is close to 1) because it can accommodate the high persistence and the correct distribution properties of the AR(1) process.</li>
+<li><strong>Accuracy:</strong> It provides a good approximation with relatively few states (even with a small $ n $), making it computationally efficient.</li>
 </ul>
 <hr />
-<p>For an arbitrary Markov process mapping to income states and corresponding income levels, <span class="arithmatex"><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span>, consider the simplest case:</p>
+<p>For an arbitrary Markov process mapping to income states and corresponding income levels $ y $, consider the simplest case:</p>
 <div class="arithmatex">
 <div class="MathJax_Preview">
 \begin{align*}
@@ -1453,7 +1454,7 @@ False
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>the steady state is unique.
 </code></pre></div>
-<p><img alt="png" src="3-application_stoch_proc_files/3-application_stoch_proc_26_1.png" /></p>
+<p><img alt="png" src="../3-application_stoch_proc_files/3-application_stoch_proc_26_1.png" /></p>
 
 
 

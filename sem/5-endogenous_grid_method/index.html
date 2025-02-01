@@ -595,11 +595,53 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-backward-iteration-to-obtain-policy-functions" class="md-nav__link">
+  <a href="#2-backwards-iteration-to-obtain-policy-functions" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Backward Iteration to Obtain Policy Functions
+      2. Backwards Iteration to Obtain Policy Functions
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Backwards Iteration to Obtain Policy Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-initialize-set-up-grids-and-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 - Initialize, Set up Grids and Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-obtain-aprime_taprime_t-w_tw_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 - Obtain a^\prime_{t}a^\prime_{t}, W_{t}W_{t}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-obtain-v_t-av_t-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 - Obtain V_{t, a}V_{t, a}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combine-steps-into-single-backward-iteration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combine Steps into single Backward Iteration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -815,11 +857,53 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-backward-iteration-to-obtain-policy-functions" class="md-nav__link">
+  <a href="#2-backwards-iteration-to-obtain-policy-functions" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Backward Iteration to Obtain Policy Functions
+      2. Backwards Iteration to Obtain Policy Functions
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Backwards Iteration to Obtain Policy Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-initialize-set-up-grids-and-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 - Initialize, Set up Grids and Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-obtain-aprime_taprime_t-w_tw_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 - Obtain a^\prime_{t}a^\prime_{t}, W_{t}W_{t}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-obtain-v_t-av_t-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 - Obtain V_{t, a}V_{t, a}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combine-steps-into-single-backward-iteration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combine Steps into single Backward Iteration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -863,7 +947,7 @@
 
 
 <h1 id="endogeneous-grid-method"><strong>Endogeneous Grid Method</strong><a class="headerlink" href="#endogeneous-grid-method" title="Permanent link">#</a></h1>
-<p>In this notebook we discuss how to solve the household problem a la Aiyagari&ndash;this is the main building block of most HANK models&ndash;with fast, optimized methods. The main reference for this notebook is Matt Rognlie&rsquo;s code on which you can find in <a href="https://github.com/shade-econ/nber-workshop-2023/blob/bc3bbba90ab575f09c4c8a9e77b0b2fe88812cd1/Lectures/Lecture%201%2C%20Standard%20Incomplete%20Markets%20Steady%20State.ipynb">his repository</a> (2024).</p>
+<p>In this notebook we discuss how to solve the household problem a la Aiyagari&ndash;this is the main building block of most HANK models&ndash;with fast, optimized methods. The main reference for this notebook is Matt Rognlie&rsquo;s code on which you can find in <a href="https://github.com/shade-econ/nber-workshop-2023/blob/bc3bbba90ab575f09c4c8a9e77b0b2fe88812cd1/Lectures/Lecture%201%2C%20Standard%20Incomplete%20Markets%20Steady%20State.ipynb">his repository</a> (2024). The endogenous grid method was introduced by Carroll (2006).</p>
 <h2 id="1-incomplete-markets-model">1. <strong>Incomplete Markets Model</strong><a class="headerlink" href="#1-incomplete-markets-model" title="Permanent link">#</a></h2>
 <p>The standard incomplete markets model features the following timing:</p>
 <ul>
@@ -871,21 +955,42 @@
 <li>allocate to assets tomorrow <span class="arithmatex"><span class="MathJax_Preview">a'</span><script type="math/tex">a'</script></span> and consumption today <span class="arithmatex"><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span></li>
 <li>all subject to a borrowing constraint <span class="arithmatex"><span class="MathJax_Preview">a\geq \underline a</span><script type="math/tex">a\geq \underline a</script></span> and no ability to insure against idiosyncratic shocks: </li>
 </ul>
-<p>$$ 
-  \begin{equation}
-    V(y, a) = \max_{c, a&rsquo;} u( c ) + \beta \mathbb E[V(e&rsquo;, a&rsquo;) | y] 
-  \end{equation}
-  $$ </p>
-<p>$$ 
-  \begin{equation}
-    s.t.\; a&rsquo; = (1+r)a + y - c 
-  \end{equation}
-  $$ </p>
-<p>$$ 
-  \begin{equation}
-    a&rsquo; \geq \underline a 
-  \end{equation}
-  $$</p>
+<div class="arithmatex">
+<div class="MathJax_Preview"> 
+\begin{align*}
+  V(y, a) = \max_{c, a'} u( c ) + \beta \mathbb E[V(e', a') | y] 
+\end{align*}
+</div>
+<script type="math/tex; mode=display"> 
+\begin{align*}
+  V(y, a) = \max_{c, a'} u( c ) + \beta \mathbb E[V(e', a') | y] 
+\end{align*}
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview"> 
+\begin{align*}
+  s.t.\; a' = (1+r)a + y - c 
+\end{align*}
+</div>
+<script type="math/tex; mode=display"> 
+\begin{align*}
+  s.t.\; a' = (1+r)a + y - c 
+\end{align*}
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview"> 
+\begin{align*}
+  a' \geq \underline a 
+\end{align*}
+</div>
+<script type="math/tex; mode=display"> 
+\begin{align*}
+  a' \geq \underline a 
+\end{align*}
+</script>
+</div>
 <p>We model the income process as an AR(1), so 
   $$ y_t = \rho y_{t-1} + e_t.$$
   Since we would like to solve the whole model on a finite grid <span class="arithmatex"><span class="MathJax_Preview">\mathcal{Y} \times \mathcal{A}</span><script type="math/tex">\mathcal{Y} \times \mathcal{A}</script></span> with indices <span class="arithmatex"><span class="MathJax_Preview">(i_y, i_a)</span><script type="math/tex">(i_y, i_a)</script></span>, we need to discretize the income and the asset space. We already have functions to do this, applying the double-exponential grid space for assets, and the Rouwenhorst AR(1) process. </p>
@@ -903,25 +1008,23 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>the steady state is unique.
 </code></pre></div>
-<h2 id="2-backward-iteration-to-obtain-policy-functions">2. <strong>Backward Iteration to Obtain Policy Functions</strong><a class="headerlink" href="#2-backward-iteration-to-obtain-policy-functions" title="Permanent link">#</a></h2>
+<h2 id="2-backwards-iteration-to-obtain-policy-functions">2. <strong>Backwards Iteration to Obtain Policy Functions</strong><a class="headerlink" href="#2-backwards-iteration-to-obtain-policy-functions" title="Permanent link">#</a></h2>
 <p>It is more efficient and accurate to use envelope condition and FOC to iterate on marginal value function <span class="arithmatex"><span class="MathJax_Preview">V_a</span><script type="math/tex">V_a</script></span> instead of finding the value function itself. We do backwards iteration in time. Let <span class="arithmatex"><span class="MathJax_Preview">a_t'(y_t, a_t)</span><script type="math/tex">a_t'(y_t, a_t)</script></span> be the policy function for next-period asset holdings. Assume that <span class="arithmatex"><span class="MathJax_Preview">u(c) = \frac{c^{1-\sigma}}{1-\sigma}</span><script type="math/tex">u(c) = \frac{c^{1-\sigma}}{1-\sigma}</script></span>, where <span class="arithmatex"><span class="MathJax_Preview">\sigma</span><script type="math/tex">\sigma</script></span> is the elasiticity of intertemporal substitution (eis).</p>
 <p>For backward iteration, we use the <strong>Envelope condition</strong>,
 $$ V_{a,t}(e, a) = (1+r_t)u&rsquo;(c_t(e, a))$$</p>
-<p>and the <strong>First-Order Condition</strong> (inequality is slack if borrowing limit binds) </p>
+<p>and the <strong>First-Order Condition</strong> (inequality binds if borrowing limit binds) </p>
 <div class="arithmatex">
 <div class="MathJax_Preview">u'(c_t(y, a)) \geq \beta \mathbb E [V_{a, t+1}(y', a_t'(y, a))]|e]. </div>
 <script type="math/tex; mode=display">u'(c_t(y, a)) \geq \beta \mathbb E [V_{a, t+1}(y', a_t'(y, a))]|e]. </script>
 </div>
 <p>repeatedly:</p>
 <p><strong>[Algorithm: Backward iteration in time]</strong> </p>
-<p>Start at <span class="arithmatex"><span class="MathJax_Preview">t = T</span><script type="math/tex">t = T</script></span>, initialize <span class="arithmatex"><span class="MathJax_Preview">V_{a, T} = 1</span><script type="math/tex">V_{a, T} = 1</script></span>. For <span class="arithmatex"><span class="MathJax_Preview">t&lt; T</span><script type="math/tex">t< T</script></span>:</p>
-<ol>
-<li>Use <span class="arithmatex"><span class="MathJax_Preview">V_{a, t+1}</span><script type="math/tex">V_{a, t+1}</script></span> to calculate RHS of FOC</li>
-<li>Solve for today&rsquo;s policies <span class="arithmatex"><span class="MathJax_Preview">a_t'(y, a)</span><script type="math/tex">a_t'(y, a)</script></span>, <span class="arithmatex"><span class="MathJax_Preview">c_t(y, a)</span><script type="math/tex">c_t(y, a)</script></span></li>
-<li>Using envelope condition, obtain marginal value function of today <span class="arithmatex"><span class="MathJax_Preview">V_{a, t}</span><script type="math/tex">V_{a, t}</script></span></li>
-</ol>
+<p>Start at <span class="arithmatex"><span class="MathJax_Preview">t = T</span><script type="math/tex">t = T</script></span>, initialize <span class="arithmatex"><span class="MathJax_Preview">V_{a, T} = 1</span><script type="math/tex">V_{a, T} = 1</script></span>. For <span class="arithmatex"><span class="MathJax_Preview">t&lt; T</span><script type="math/tex">t< T</script></span>:
+1. Use <span class="arithmatex"><span class="MathJax_Preview">V_{a, t+1}</span><script type="math/tex">V_{a, t+1}</script></span> to calculate RHS of FOC
+2. Solve for today&rsquo;s policies <span class="arithmatex"><span class="MathJax_Preview">a_t'(y, a)</span><script type="math/tex">a_t'(y, a)</script></span>, <span class="arithmatex"><span class="MathJax_Preview">c_t(y, a)</span><script type="math/tex">c_t(y, a)</script></span>
+3. Using envelope condition, obtain marginal value function of today <span class="arithmatex"><span class="MathJax_Preview">V_{a, t}</span><script type="math/tex">V_{a, t}</script></span></p>
 <p>We go through the steps in detail.</p>
-<p><strong>Step 1</strong> - Initialize, Set up Grids and Parameters</p>
+<h4 id="step-1-initialize-set-up-grids-and-parameters"><strong>Step 1</strong> - Initialize, Set up Grids and Parameters<a class="headerlink" href="#step-1-initialize-set-up-grids-and-parameters" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code><span class="n">model_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;beta&#39;</span> <span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
     <span class="s1">&#39;r&#39;</span> <span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>
@@ -939,8 +1042,8 @@ $$ V_{a,t}(e, a) = (1+r_t)u&rsquo;(c_t(e, a))$$</p>
 
 <span class="n">W</span> <span class="o">=</span> <span class="n">model_params</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">Grids</span><span class="o">.</span><span class="n">Pi</span> <span class="o">@</span> <span class="n">Va</span>
 </code></pre></div>
-<p><strong>Step 2</strong> - Obtain <span class="arithmatex"><span class="MathJax_Preview">a^\prime_{t}</span><script type="math/tex">a^\prime_{t}</script></span>, <span class="arithmatex"><span class="MathJax_Preview">W_{t}</span><script type="math/tex">W_{t}</script></span>
-We now write policy functions, marginal value function and associated objects as functions on the grid indices <span class="arithmatex"><span class="MathJax_Preview">i_y</span><script type="math/tex">i_y</script></span> and <span class="arithmatex"><span class="MathJax_Preview">i_a</span><script type="math/tex">i_a</script></span> whenever useful. We would like to solve for consumption policy using the FOC (assuming the constraint is slack)
+<h4 id="step-2-obtain-aprime_taprime_t-w_tw_t"><strong>Step 2</strong> - Obtain <span class="arithmatex"><span class="MathJax_Preview">a^\prime_{t}</span><script type="math/tex">a^\prime_{t}</script></span>, <span class="arithmatex"><span class="MathJax_Preview">W_{t}</span><script type="math/tex">W_{t}</script></span><a class="headerlink" href="#step-2-obtain-aprime_taprime_t-w_tw_t" title="Permanent link">#</a></h4>
+<p>We now write policy functions, marginal value function and associated objects as functions on the grid indices <span class="arithmatex"><span class="MathJax_Preview">i_y</span><script type="math/tex">i_y</script></span> and <span class="arithmatex"><span class="MathJax_Preview">i_a</span><script type="math/tex">i_a</script></span> whenever useful. We would like to solve for consumption policy using the FOC (assuming the constraint is slack)
 $$ u&rsquo;(c_t) = W_{a,t}(y, a&rsquo;) \Rightarrow c_t = \left( W_{a,t}(y, a&rsquo;) \right)^{-1/\sigma}$$
 for each possible future asset level <span class="arithmatex"><span class="MathJax_Preview">a'</span><script type="math/tex">a'</script></span>. Then we use the envelope condition and can obtain <span class="arithmatex"><span class="MathJax_Preview">V_t(y, a)</span><script type="math/tex">V_t(y, a)</script></span>, where <span class="arithmatex"><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> solves <span class="arithmatex"><span class="MathJax_Preview">a' = (1+r)a + y - c_t(y, a')</span><script type="math/tex">a' = (1+r)a + y - c_t(y, a')</script></span>.</p>
 <p><strong>Problem:</strong> The implied <span class="arithmatex"><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> may not lie on the grid. Generally, we want <span class="arithmatex"><span class="MathJax_Preview">V_{t, a}(y, a)</span><script type="math/tex">V_{t, a}(y, a)</script></span> for fixed values of <span class="arithmatex"><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> on the grid, not <span class="arithmatex"><span class="MathJax_Preview">V_{t, a}(y, a(a'))</span><script type="math/tex">V_{t, a}(y, a(a'))</script></span>, where <span class="arithmatex"><span class="MathJax_Preview">a(a')</span><script type="math/tex">a(a')</script></span> depends on the values of <span class="arithmatex"><span class="MathJax_Preview">a'\in \mathcal{A}</span><script type="math/tex">a'\in \mathcal{A}</script></span>.</p>
@@ -987,11 +1090,11 @@ for each possible future asset level <span class="arithmatex"><span class="MathJ
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$a$&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$a^{\prime}$&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Policy function after 1 iteration&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<p><img alt="png" src="5-endogenous_grid_method_files/5-endogenous_grid_method_12_0.png" /></p>
-<p><strong>Step 3</strong> - Obtain <span class="arithmatex"><span class="MathJax_Preview">V_{t, a}</span><script type="math/tex">V_{t, a}</script></span></p>
+<p><img alt="png" src="../5-endogenous_grid_method_files/5-endogenous_grid_method_12_0.png" /></p>
+<h4 id="step-3-obtain-v_t-av_t-a"><strong>Step 3</strong> - Obtain <span class="arithmatex"><span class="MathJax_Preview">V_{t, a}</span><script type="math/tex">V_{t, a}</script></span><a class="headerlink" href="#step-3-obtain-v_t-av_t-a" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code><span class="n">V_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">model_params</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="n">c</span> <span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">model_params</span><span class="p">[</span><span class="s1">&#39;eis&#39;</span><span class="p">])</span> <span class="c1"># update value function derivative</span>
 </code></pre></div>
-<p><strong>Combine Steps into single Backward Iteration</strong></p>
+<h3 id="combine-steps-into-single-backward-iteration"><strong>Combine Steps into single Backward Iteration</strong><a class="headerlink" href="#combine-steps-into-single-backward-iteration" title="Permanent link">#</a></h3>
 <p>Now we write a function which takes as input a marginal value function, income and asset grids, preference parameters and transition matrices to compute a single backward iteration and output objects <code>V_a, a, c</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">backward_iteration</span><span class="p">(</span><span class="n">V_a</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">eis</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">grid_a</span><span class="p">,</span> <span class="n">grid_y</span><span class="p">,</span> <span class="n">Pi</span><span class="p">):</span>
 
@@ -1104,7 +1207,7 @@ for each possible future asset level <span class="arithmatex"><span class="MathJ
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>the steady state is unique.
 </code></pre></div>
-<p><img alt="png" src="5-endogenous_grid_method_files/5-endogenous_grid_method_18_1.png" /></p>
+<p><img alt="png" src="../5-endogenous_grid_method_files/5-endogenous_grid_method_18_1.png" /></p>
 <p><strong>Exercise:</strong> Refactor the code in order to use <code>@njit</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span>
 
@@ -1186,14 +1289,17 @@ for each possible future asset level <span class="arithmatex"><span class="MathJ
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>the steady state is unique.
 </code></pre></div>
-<p><img alt="png" src="5-endogenous_grid_method_files/5-endogenous_grid_method_21_1.png" /></p>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">timeit</span> 
-<span class="n">ss</span> <span class="o">=</span> <span class="n">SteadyStateHH</span><span class="p">(</span><span class="n">model_params</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">)</span>
+<p><img alt="png" src="../5-endogenous_grid_method_files/5-endogenous_grid_method_21_1.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="n">ss</span> <span class="o">=</span> <span class="n">SteadyStateHH</span><span class="p">(</span><span class="n">model_params</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">)</span>
 <span class="n">ss</span><span class="o">.</span><span class="n">solve_ss</span><span class="p">(</span><span class="n">model_params</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">model_params</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">ss</span><span class="o">.</span><span class="n">solve_ss</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">model_params</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>(array([[1.41722822e-01, 1.46412415e-01, 1.50292317e-01, ...,
+<div class="highlight"><pre><span></span><code>the steady state is unique.
+
+
+
+
+
+(array([[1.41722822e-01, 1.46412415e-01, 1.50292317e-01, ...,
          1.86182818e+02, 1.94981292e+02, 2.04215800e+02],
         [2.50991933e-01, 2.55681526e-01, 2.60415096e-01, ...,
          1.86403939e+02, 1.95202357e+02, 2.04436700e+02],
@@ -1275,7 +1381,7 @@ D_{t+1}(y, a) &= \sum_{\bar y \in \mathcal Y} \sum_{\bar a \in \mathcal A} D_{t}
 
 <span class="o">%</span><span class="n">timeit</span> <span class="n">get_mu</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">a_prime</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">grid_a</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">grid_y</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2.43 ms ± 148 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="highlight"><pre><span></span><code>1.86 ms ± 27.2 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </code></pre></div>
 <p>Instead, consider where the mass of <span class="arithmatex"><span class="MathJax_Preview">D_t(y, a)</span><script type="math/tex">D_t(y, a)</script></span> is sent to. For <span class="arithmatex"><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span> fixed, <span class="arithmatex"><span class="MathJax_Preview">D_t(y, a) \dfrac{a'(y, a) - a'(y, a)^-}{a'(y, a)^+ - a'(y, a)^-} = D_t(y, a) q(y, a)</span><script type="math/tex">D_t(y, a) \dfrac{a'(y, a) - a'(y, a)^-}{a'(y, a)^+ - a'(y, a)^-} = D_t(y, a) q(y, a)</script></span> is sent to <span class="arithmatex"><span class="MathJax_Preview">a'(y, a)^+</span><script type="math/tex">a'(y, a)^+</script></span> and <span class="arithmatex"><span class="MathJax_Preview">D_t(y, a) (1-q(y, a))</span><script type="math/tex">D_t(y, a) (1-q(y, a))</script></span> is sent to <span class="arithmatex"><span class="MathJax_Preview">a'(y, a)^-</span><script type="math/tex">a'(y, a)^-</script></span>. Proceeding over all <span class="arithmatex"><span class="MathJax_Preview">(y, a)</span><script type="math/tex">(y, a)</script></span>, we obtain <span class="arithmatex"><span class="MathJax_Preview">\tilde D_t(\cdot, \cdot)</span><script type="math/tex">\tilde D_t(\cdot, \cdot)</script></span>, the distribution after asset choices were made and before income shocks realized.</p>
 <p>We now write a function to obtain the <span class="arithmatex"><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> (the lotteries) and the indices of <span class="arithmatex"><span class="MathJax_Preview">a'(y, a)^+</span><script type="math/tex">a'(y, a)^+</script></span>, where the masses in the distribution are sent to. Once we got <code>q</code> and <code>indexes</code>, we can use these objects in every forward iteration on <span class="arithmatex"><span class="MathJax_Preview">D_t</span><script type="math/tex">D_t</script></span>.</p>
@@ -1332,8 +1438,33 @@ D_{t+1}(y, a) &= \sum_{\bar y \in \mathcal Y} \sum_{\bar a \in \mathcal A} D_{t}
     <span class="k">return</span> <span class="n">D</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">D_ss</span> <span class="o">=</span> <span class="n">distribution_ss</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">Pi</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">a_prime</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">grid_a</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1E-10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># check how long it takes</span>
+<span class="o">%</span><span class="n">time</span> <span class="n">distribution_ss</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">Pi</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">a_prime</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">grid_a</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1E-10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>max |D_t - D_t+1| =  9.662340372251776e-11 
+num iterations: 536
+max |D_t - D_t+1| =  9.662340372251776e-11 
+num iterations: 536
+CPU times: user 7.77 ms, sys: 33 µs, total: 7.8 ms
+Wall time: 7.72 ms
 
-<span class="o">%</span><span class="n">timeit</span> <span class="n">distribution_ss</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">Pi</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">a_prime</span><span class="p">,</span> <span class="n">ss</span><span class="o">.</span><span class="n">Grids</span><span class="o">.</span><span class="n">grid_a</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1E-10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+
+
+array([[1.40918274e-001, 1.12836882e-004, 7.66408375e-005, ...,
+        4.63400194e-114, 6.22448773e-116, 4.23457364e-118],
+       [1.38212429e-001, 2.53033570e-004, 1.90803709e-004, ...,
+        4.61175517e-114, 6.19620063e-116, 4.21646007e-118],
+       [1.29247539e-001, 6.69139940e-004, 5.20800102e-004, ...,
+        4.61134519e-114, 6.19614397e-116, 4.21685452e-118],
+       ...,
+       [4.76938191e-003, 8.11450720e-005, 5.90862252e-005, ...,
+        4.73711752e-114, 6.35938753e-116, 4.32452420e-118],
+       [1.49636758e-004, 2.56112858e-006, 1.86456018e-006, ...,
+        4.92295035e-114, 6.59920835e-116, 4.48156752e-118],
+       [3.77194925e-006, 6.47532936e-008, 4.71375717e-008, ...,
+        5.27257915e-114, 7.04886178e-116, 4.77491899e-118]])
 </code></pre></div>
 <h3 id="using-the-steadystatehh-module"><strong>Using the SteadyStateHH Module</strong><a class="headerlink" href="#using-the-steadystatehh-module" title="Permanent link">#</a></h3>
 <p><strong>Exercise:</strong> Add the computation of steady state <span class="arithmatex"><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> to the <code>SteadyStateHH</code> class. Import it from another file and run it.</p>

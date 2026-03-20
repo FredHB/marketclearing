@@ -3,10 +3,6 @@ site_name: 'market.clearing <br><small><i>economic research and opinion.</i></sm
 nav:
   - About: 
     - about/index.md
-    - Frederik Bennhoff:
-      - Frederik Bennhoff: fred/index.md
-    - Igli Bajo:
-      - Igli Bajo: igli/index.md
   - Blog: blog/index.md
   - Short Courses & Resources:
     - Solving Economic Models: 
